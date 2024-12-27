@@ -3,26 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Item extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
-        'email',
-        'password',
+        'descripition',
+        'price',
+        'image',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
-
-    public function items()
+    public function user()
     {
-        return $this->hasMany(Item::class);
+        return $this->belongsTo(User::class);
     }
 
     public function favorites()
@@ -39,9 +36,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Purchase::class);
     }
-
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
 }
+
