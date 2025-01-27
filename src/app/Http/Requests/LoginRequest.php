@@ -24,18 +24,17 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|min:7|confirmed',
+            'email' => 'required|string|email|exists:users,email', // existsルールを使用
+            'password' => 'required|string', // confirmedは不要
         ];
     }
 
     public function messages()
     {
         return [
-            
             'email.required' => 'メールアドレスを入力してください。',
+            'email.exists' => 'ログイン情報が登録されていません。',
             'password.required' => 'パスワードを入力してください。',
-            'password.confirmed' => 'ログイン情報が登録されていません。',
         ];
     }
 }

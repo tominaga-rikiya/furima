@@ -4,18 +4,14 @@
 <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
 @endsection
 
-@section('link')
-<a class="header__link" href="/login">login</a>
-@endsection
-
 @section('content')
 <div class="register-form">
   <h2 class="register-form__heading content__heading">会員登録</h2>
   <div class="register-form__inner">
-    <form class="register-form__form" action="/register" method="POST">
+    <form class="register-form__form" action="{{ route('register') }}" method="POST">
       @csrf
       <div class="register-form__group">
-        <label class="register-form__label" for="name">お名前</label>
+        <label class="register-form__label" for="name">ユーザー名</label>
         <input class="register-form__input" type="text" name="name" id="name" value="{{ old('name') }}">
         <p class="register-form__error-message">
           @error('name')

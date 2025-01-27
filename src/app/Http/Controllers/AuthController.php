@@ -2,79 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest; 
 use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth; // 追加
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // 会員登録フォームを表示
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
-
-    // 会員登録処理
+    // 会員登録
     public function register(RegisterRequest $request)
     {
-        // 入力値の検証
-        $validatedData = $request->validated();
-
-        // ユーザーの作成
-        $user = $this->create($request->all());
-
-        // ユーザー登録後にログインさせる
-        auth()->login($user);
-
-        // ダッシュボードなどにリダイレクト（例えば 'dashboard'）
-        return redirect()->route('login'); // ここを 'login' から 'dashboard' に変更することもできます
-    }
-
-    // 入力値のバリデーション
-    protected function validator(array $data)
-    {
-       
-    }
-
-    // ユーザー作成処理
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-
-    // ログインフォームを表示
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
-    // ログイン処理
-    public function login(Request $request)
-    {
-        // バリデーション
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
-        // 認証処理
-        if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
-            // ログイン成功
-            return redirect()->intended('/home');
+        // ユーザーをログイン状態に
+        Auth::login($user);
+
+        if ($user->isFirstTime()) {
+    
+            return redirect()->route('profile.edit');
         }
 
-        // ログイン失敗
+        return redirect()->route('home');  // ホームページにリダイレクト
+    }
+
+    public function login(LoginRequest $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect()->route('home');  // ログイン成功後にリダイレクト
+        }
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'ログイン情報が登録されていません',
         ]);
     }
-}
 
+    // ログアウト
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+}

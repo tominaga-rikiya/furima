@@ -11,10 +11,14 @@ class Item extends Model
 
     protected $fillable = [
         'user_id',
+        'condition_id',
         'name',
-        'descripition',
+        'description',
         'price',
         'image',
+        'is_sold',
+        'brand_name',
+        'category_id',   
     ];
 
     public function user()
@@ -36,5 +40,20 @@ class Item extends Model
     {
         return $this->hasMany(Purchase::class);
     }
+
+    public function categories()
+    {
+    return $this->belongsToMany(Category::class);
+
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    protected $casts = [
+        'is_sold' => 'boolean',  // これで is_sold を boolean としてキャスト
+    ];
 }
 
