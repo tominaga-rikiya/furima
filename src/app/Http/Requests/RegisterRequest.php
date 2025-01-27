@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
+            'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password', 
         ];
@@ -41,7 +41,6 @@ class RegisterRequest extends FormRequest
             'password.confirmed' => 'パスワードと一致しません。',
             'password_confirmation.required' => 'パスワードと一致しません。',
             'password_confirmation.same' => 'パスワードと一致しません。',
-            'password_confirmation.min' => 'パスワードと一致しません。',
         ];
     }
 }

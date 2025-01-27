@@ -3,20 +3,20 @@
 @section('content')
 <div class="login-form">
     <h2>ログイン</h2>
-    <form method="POST" action="{{ route('login') }}">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
-         <div class="register-form__group">
-        <label class="register-form__label" for="name">ユーザー名/メールアドレス</label>
-        <input class="register-form__input" type="text" name="name" id="name" placeholder="例：山田 太郎" value="{{ old('name') }}">
+        <div class="register-form__group">
+        <label class="register-form__label" for="email">ユーザー名/メールアドレス</label>
+        <input class="register-form__input" type="email" name="email" id="email" value="{{ old('email') }}">
         <p class="register-form__error-message">
-          @error('name')
+          @error('email')
           {{ $message }}
           @enderror
         </p>
       </div>
-        <div class="register-form__group">
+       <div class="register-form__group">
         <label class="register-form__label" for="password">パスワード</label>
-        <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+        <input class="register-form__input" type="password" name="password" id="password" >
         <p class="register-form__error-message">
           @error('password')
           {{ $message }}
@@ -26,5 +26,6 @@
             <button type="submit">ログイン</button>
         </div>
     </form>
+    <a href="{{ route('register') }}">会員登録はこちら</a>
 </div>
 @endsection

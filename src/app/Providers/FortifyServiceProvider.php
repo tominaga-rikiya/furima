@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
-use App\Actions\Fortify\CreateNewUser;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
+use App\Actions\Fortify\CreateNewUser as FortifyCreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
+use App\Http\Requests\LoginRequest;
+use Laravel\Fortify\Http\Requests\RegisterRequest as FortifyRegisterRequest;
+use App\Http\Requests\RegisterRequest;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -16,7 +20,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // 必要なサービスを登録します
     }
 
     /**
@@ -24,20 +28,20 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::createUsersUsing(FortifyCreateNewUser::class);
 
-             Fortify::registerView(function () {
-         return view('auth.register');
-     });
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
 
-     Fortify::loginView(function () {
-         return view('auth.login');
-     });
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
 
-     RateLimiter::for('login', function (Request $request) {
-         $email = (string) $request->email;
+        RateLimiter::for('login', function (Request $request) {
+            $email = (string) $request->email;
 
-         return Limit::perMinute(10)->by($email . $request->ip());
-     });
-    }
-}
+            return Limit::perMinute(10)->by($email . $request->ip());
+        });
+    } 
+} 
