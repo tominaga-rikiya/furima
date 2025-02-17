@@ -1,0 +1,100 @@
+/* ログインフォームのスタイル */
+.login-form {
+    width: 50%;
+    max-width: 680px;
+    min-width: 320px;
+    margin: auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* フォーム内レイアウト */
+.register-form_inner {
+    display: flex;
+    justify-content: center;
+}
+
+.register-form__form {
+    width: 90%;
+    max-width: 680px;
+    border-radius: 8px;
+    background-color: #FDFEFE;
+    justify-content: center;
+}
+
+.register-form__group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.register-form__label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.register-form__input {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    font-family: serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register-form__error-message {
+    color: red;
+    font-size: 12px;
+}
+
+/* ボタン */
+.btn {
+    width: 100%;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff4f4f;
+}
+
+/* 会員登録リンク */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* PC (1400px-1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .login-form {
+        width: 45%;
+    }
+}
+
+/* タブレット (768px-850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .login-form {
+        width: 80%;
+    }
+
+    .register-form__input {
+        width: 100%;
+    }
+}
+
