@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+@endsection
+
 @section('content')
 <div class="login-form">
     <h2>ログイン</h2>
@@ -23,7 +27,7 @@
           @enderror
         </p>
       </div>
-            <button type="submit">ログイン</button>
+            <button class="btn" type="submit">ログイン</button>
         </div>
     </form>
     <a href="{{ route('register') }}">会員登録はこちら</a>

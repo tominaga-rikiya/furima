@@ -13,8 +13,14 @@ class Category extends Model
         'category',
     ];
 
+    protected $casts = [
+        'category' => 'array',
+    ];
+
      public function items()
     {
         return $this->belongsToMany(Item::class);
     }
+
+    
 }
