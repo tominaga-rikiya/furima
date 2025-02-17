@@ -37,17 +37,19 @@
 }
 
 
-@media (max-width: 850px) {
-    form {
-        width: 90%;
-        padding: 20px;
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .login-form {
+        width: 45%;
     }
 }
 
 
-@media (min-width: 1400px) {
-    form {
-        width: 50%;
-        max-width: 700px;
-    }  
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .login-form {
+        width: 80%;
+    }
+
+    .register-form__input {
+        width: 100%;
+    }
 }

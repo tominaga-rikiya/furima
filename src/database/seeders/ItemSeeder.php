@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Item;
 
 class ItemSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('items')->insert([
+        $items = [
             [
                 'user_id' => 1,
                 'name' => '腕時計',
@@ -23,7 +23,7 @@ class ItemSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'image' => 'storage/ArmaniMensClock.jpg',
                 'condition_id' => 1,
-                'category_id' => 1,
+                'category_ids' => [1],  
                 'is_sold' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -36,7 +36,7 @@ class ItemSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
                 'image' => 'storage/HDDHaedDisk.jpg',
                 'condition_id' => 2,
-                'category_id' => 2,
+                'category_ids' => [2],  
                 'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -49,7 +49,7 @@ class ItemSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3kgのセット',
                 'image' => 'storage/iLovelMGd.jpg',
                 'condition_id' => 3,
-                'category_id' => 5,
+                'category_ids' => [5],  
                 'is_sold' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -62,7 +62,7 @@ class ItemSeeder extends Seeder
                 'description' => 'クラシックなデザインの革靴',
                 'image' => 'storage/LeatherShoesProductPhoto.jpg',
                 'condition_id' => 4,
-                'category_id' => 4,
+                'category_ids' => [4],  
                 'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -73,9 +73,9 @@ class ItemSeeder extends Seeder
                 'brand_name' => 'アクアリーフ',
                 'price' => 3000,
                 'description' => '高音質のレコーディング用マイク',
-                'image' => 'storage/LivingRoomLaptop.jpg',
+                'image' => 'storage/MusicMic4632231.jpg',
                 'condition_id' => 1,
-                'category_id' => 2,
+                'category_ids' => [2],  
                 'is_sold' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -88,7 +88,7 @@ class ItemSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ',
                 'image' => 'storage/Pursefashionpocket.jpg',
                 'condition_id' => 2,
-                'category_id' => 4,
+                'category_ids' => [4],  
                 'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -101,7 +101,7 @@ class ItemSeeder extends Seeder
                 'description' => '手動のコーヒーミル',
                 'image' => 'storage/WaitresswithCoffeeGrinder.jpg',
                 'condition_id' => 3,
-                'category_id' => 3,
+                'category_ids' => [3, 5],  
                 'is_sold' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -114,7 +114,7 @@ class ItemSeeder extends Seeder
                 'description' => '便利なメイクアップセット',
                 'image' => 'storage/makeup.jpg',
                 'condition_id' => 2,
-                'category_id' => 4,
+                'category_ids' => [4],  
                 'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -127,7 +127,7 @@ class ItemSeeder extends Seeder
                 'description' => '高性能なノートパソコン',
                 'image' => 'storage/LivingRoomLaptop.jpg',
                 'condition_id' => 1,
-                'category_id' => 2,
+                'category_ids' => [2],  
                 'is_sold' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -140,11 +140,15 @@ class ItemSeeder extends Seeder
                 'description' => '使いやすいタンブラー',
                 'image' => 'storage/Tumblersouvenir.jpg',
                 'condition_id' => 4,
-                'category_id' => 3,
+                'category_ids' => [3],  
                 'is_sold' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        foreach ($items as $itemData) {
+            Item::create($itemData);
+        }
     }
 }

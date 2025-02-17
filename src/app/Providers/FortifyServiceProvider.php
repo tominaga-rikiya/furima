@@ -8,10 +8,6 @@ use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
-use App\Http\Requests\LoginRequest;
-use Laravel\Fortify\Http\Requests\RegisterRequest as FortifyRegisterRequest;
-use App\Http\Requests\RegisterRequest;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +33,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('auth.login');
         });
+        
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

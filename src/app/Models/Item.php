@@ -18,7 +18,11 @@ class Item extends Model
         'image',
         'is_sold',
         'brand_name',
-        'category_id',   
+        'category_ids',   
+    ];
+
+     protected $casts = [
+        'category_ids' => 'array', 
     ];
 
     public function user()
@@ -41,19 +45,12 @@ class Item extends Model
         return $this->hasMany(Purchase::class);
     }
 
-    public function categories()
-    {
-    return $this->belongsToMany(Category::class);
-
-    }
 
     public function condition()
     {
         return $this->belongsTo(Condition::class);
+
     }
 
-    protected $casts = [
-        'is_sold' => 'boolean',  // これで is_sold を boolean としてキャスト
-    ];
 }
 

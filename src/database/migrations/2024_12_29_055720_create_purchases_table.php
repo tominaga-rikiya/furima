@@ -19,6 +19,8 @@ class CreatePurchasesTable extends Migration
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             $table->string('address');
             $table->enum('payment_method', ['credit_card', 'convenience_store']);
+            $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');
+            $table->unique(['user_id', 'item_id']);
             $table->timestamps();
         });
     }
