@@ -22,9 +22,7 @@ mysql:
 **Laravel環境構築**
 1. `docker-compose exec php bash`
 2. `composer install`
-3. `cp .env.example .env`
-「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
-4. .envに以下の環境変数を追加
+3. .envに以下の環境変数を追加
 ``` text
 DB_CONNECTION=mysql
 DB_HOST=mysql
