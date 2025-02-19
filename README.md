@@ -1,8 +1,12 @@
 # furima(フリマアプリ)
 
+## 概要
+本プロジェクトは、ユーザーが商品を売買できるフリマアプリです。  
+出品機能、購入機能、お気に入り機能、コメント機能などを備えています。
+
 ## 環境構築
 **Dockerビルド**
-1. `git clone git@github.com:estra-inc/furima.git`
+1. `git@github.com:tominaga-rikiya/furima.git`
 2. DockerDesktopアプリを立ち上げる
 3. `docker-compose up -d --build`
 
@@ -18,7 +22,8 @@ mysql:
 **Laravel環境構築**
 1. `docker-compose exec php bash`
 2. `composer install`
-3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
+3. `cp .env.example .env`
+「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
 4. .envに以下の環境変数を追加
 ``` text
 DB_CONNECTION=mysql
@@ -42,9 +47,20 @@ php artisan migrate
 ``` bash
 php artisan db:seed
 ```
+
+## ログイン情報
+### 管理者ユーザー
+- メールアドレス: testuser671@example.com
+- パスワード: password123456
+
+### 一般ユーザー
+- メールアドレス: testuser671@example.com
+- パスワード: password123456
+
+
 8. シンボリックリンク実行
 ``` bash
-php artisan storage::link
+php artisan storage:link
 ```
 
 ## 使用技術(実行環境)
