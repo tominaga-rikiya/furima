@@ -63,7 +63,7 @@ php artisan db:seed
 php artisan storage:link
 ```
 
->http://localhostで権限によるエラーが発生する場合はstorage/logs/laravel.logの権限を変更
+*http://localhostで権限によるエラーが発生する場合はstorage/logs/laravel.logの権限を変更*
 ``` bash
 chmod -R 777 storage
 chown -R www-data:www-data storage  # WSL なら「www-data」ではなく「$USER」でもOK
