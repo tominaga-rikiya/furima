@@ -31,6 +31,7 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+SESSION_DRIVER=file
 ```
 5. アプリケーションキーの作成
 ``` bash
@@ -49,17 +50,23 @@ php artisan db:seed
 
 ## ログイン情報
 ### 管理者ユーザー
-- メールアドレス: testuser671@example.com
+- メールアドレス: testuser1@example.com
 - パスワード: password123456
 
 ### 一般ユーザー
-- メールアドレス: testuser671@example.com
+- メールアドレス: testuser1@example.com
 - パスワード: password123456
 
 
 8. シンボリックリンク実行
 ``` bash
 php artisan storage:link
+```
+
+>http://localhostで権限によるエラーが発生する場合はstorage/logs/laravel.logの権限を変更
+``` bash
+chmod -R 777 storage
+chown -R www-data:www-data storage  # WSL なら「www-data」ではなく「$USER」でもOK
 ```
 
 ## 使用技術(実行環境)
