@@ -68,6 +68,12 @@ chmod -R 777 storage
 chown -R www-data:www-data storage  # WSL なら「www-data」ではなく「$USER」でもOK
 ```
 
+*5.6と続けた場合エラーが出たら、もう一度サービスを再起動*
+``` bash
+docker-compose down
+docker-compose up -d
+```
+
 ## 使用技術(実行環境)
 - PHP8.3.0
 - Laravel8.83.27
