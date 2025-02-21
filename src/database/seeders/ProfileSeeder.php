@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Profile;
+use App\Models\User;
+use App\Models\Item;
 
 class ProfileSeeder extends Seeder
 {
@@ -14,14 +16,19 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('profiles')->insert([
-            'user_id' => 1, 
-            'profile_image' => 'storage/ArmaniMensClock.jpg', 
-            'postal_code' => '123-1234',
-            'address' => 'toyama',
-            'building_name' => 'ペイサージュ',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $users = User::all();
+        $item = User::all();
+
+
+        foreach ($users as $user) {
+            Profile::create([
+                'user_id' => $user->id,
+                'profile_image' =>
+                'storage/ArmaniMensClock.jpg',
+                'postal_code' => '123-1234',
+                'address' => 'toyama',
+                'building_name' => 'ペイサージュ',
+            ]);
+        }
     }
 }

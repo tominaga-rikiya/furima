@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/profile/edit.css') }}">
+@endsection
+
 @section('content')
 <div class="container">
     <h1>プロフィール設定</h1>
@@ -28,7 +32,7 @@
 
         <div class="form-group">
             <label>ユーザー名</label>
-            <input type="text" name="name" value="{{ old('name', $user->name) }}" >
+            <input  type="text" name="name" value="{{ old('name', $user->name) }}" >
             @error('name')
                 <div class="error-message">{{ $message }}</div>
             @enderror
